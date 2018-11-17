@@ -1,1 +1,2 @@
-https://www.youtube.com/watch?v=w339OWGlSo0
+https://www.youtube.com/watch?v=w339OWGlSo0 (как подключить SFML)
+https://www.youtube.com/watch?v=N1lovpBQTF4&list=PLskEAOuS4gQMoAE68-71KRxQegr8rSw54&index=3 (уроки)
