@@ -1,104 +1,57 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
+#include <Windows.h>
 
 using namespace sf;
 
 namespace Lights
 {
-	const int H_MAP = 30;
-	const int W_MAP = 50;
-
-	/*
-	* 1 - светофор по типу улица - улица
-	* 2 - светофор по типу шоссе - улица
-	*/
-
-	String Map[H_MAP] =
+	class Traffic_Light
 	{
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"            1                                     ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                   1                              ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-		"                                                  ",
-	};
-
-	Image map_im;
-	Texture map_tex;
-	Sprite sp_map;
-
-	void create_map_sprite()
-	{
-		map_im.loadFromFile("D:\\Projects\\images\\light.png");
-		map_tex.loadFromImage(map_im);
-		sp_map.setTexture(map_tex);
-	}
-
-	void switching()
-	{
-		Clock cl;
-		while (true)
+	private:
+		int section = 0; //0 - red, 1 - yellow, 2 - green
+		float x, y, w, h;
+		Image map_im;
+		Texture map_tex;
+		Sprite sp_map;
+	public:
+		Traffic_Light(float x, float y, float w, float h)
 		{
-			float time = cl.getElapsedTime().asMicroseconds();
-			cl.restart();
-			time /= 800;
-			if (time <= 5)
-				sp_map.setTextureRect(IntRect(1, 1, 13, 39));
-				
-			if (time > 5 && time <= 10)
-				sp_map.setTextureRect(IntRect(36, 1, 13, 39));
-				
-			if (time > 10)
-				sp_map.setTextureRect(IntRect(18, 1, 14, 39));
+			this->x = x; this->y = y;
+			this->w = w; this->h = h;
+			map_im.loadFromFile("D:\\Projects\\images\\light.png");
+			map_tex.loadFromImage(map_im);
+			sp_map.setTexture(map_tex);
+			sp_map.setTextureRect(IntRect(0, 0, w, h));
+			sp_map.setPosition(x, y);
 		}
-	}
+		Sprite & get_sp() { return sp_map; }
 
-	void draw_map(RenderWindow &w)
-	{
-		for (int i = 0; i < H_MAP; i++)
+		void change_section()
 		{
-			for (int j = 0; j < W_MAP; j++)
+			int timer = 0;
+			while (true)
 			{
-				switch (Map[i][j])
-				{
-				case '1':
-					switching();
-					//sp_map.setTextureRect(IntRect(54, 1, 14, 39));
-					break;
-				case ' ':
-					continue;
-				case '2':
-					break;
-				}
+				Sleep(1000);
+				if (timer <= 5)
+					section = 0;
 
-				sp_map.setPosition(j * 14, i * 39);
-				w.draw(sp_map);
+				if (timer > 5 && timer <= 7)
+					section = 1;
+
+				if (timer > 7 && timer <= 12)
+					section = 2;
+
+				if (timer > 12)
+					timer = 0;
 			}
 		}
-	}
 
+
+	};
+	Traffic_Light tl1(0, 0, 14, 39);
+	void draw_traffic_lights(RenderWindow &w)
+	{
+		w.draw(tl1.get_sp());
+	}
 }
