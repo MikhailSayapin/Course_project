@@ -3,85 +3,101 @@
 
 using namespace sf;
 
-const int H_MAP = 8; //Р’С‹СЃРѕС‚Р°
-const int W_MAP = 14;
-
-/*
-* T - РґРµСЂРµРІСЊСЏ РѕР±С‹С‡РЅС‹Рµ
-* Р’ - РєСѓСЃС‚С‹
-* Рќ - РґРѕРјР°
-* F - РјРЅРѕРіРѕСЌС‚Р°Р¶РєРё
-* S - РµР»СЊ
-* R - РѕР±С‹С‡РЅС‹Рµ РґРѕСЂРѕРіРё
-* C - С‚РѕСЂРіРѕРІС‹Р№ С†РµРЅС‚СЂ
-* Р  - РїР°СЂРє
-* M - РјР°РіРёСЃС‚СЂР°Р»СЊ
-*/
-
-std::string Map[H_MAP] =
-{ //РљСЂР°СЃРЅРѕРґР°СЂ 
-	"TTTTTTMTTTTTTT",
-	"SRRRRRMRRRRRRS", //СѓР»РёС†Р° РљСЂР°СЃРЅС‹С… РџР°СЂС‚РёР·Р°РЅ
-	"SBBBBBMRRRRRRR",
-	"SHHHHHMHHHHHHS",
-	"SSSSSSMSSSSSSS",
-	"SRRRRRMRRRRRRS", //СѓР»РёС†Р° Р‘Р°Р±СѓС€РєРёРЅР°
-	"SFFFFFMFFFFFCS",
-	"STTTTTMTTTTTTT",
-};
-
-Image map_im;
-Texture map_tex;
-Sprite sp_map;
-
-void create_map_sprite()
+namespace Map
 {
-	map_im.createMaskFromColor(Color(0, 0, 0));
-	map_im.loadFromFile("D:\\Projects\\images\\map.png");
-	map_tex.loadFromImage(map_im);
-	sp_map.setTexture(map_tex);
-}
+	const int H_MAP = 11;
+	const int W_MAP = 14;
 
+	/*
+	* T - деревья обычные
+	* В - кусты
+	* Н - дома
+	* F - многоэтажки
+	* S - ель
+	* ^ - обычные дороги вверх-вниз
+	* > - обычные дороги вправо - влево
+	* C - торговый центр
+	* Р - парк
+	* = - магистраль
+	* + - перекрёсток
+	*/
 
-
-void draw_map(RenderWindow &w)
-{
-	for (int i = 0; i < H_MAP; i++)
+	String Map[H_MAP] =
 	{
-		for (int j = 0; j < W_MAP; j++)
+		"S=SSSS^SSSSSSS",
+		"T=TTTT^TTTTTTT",
+		">#>>>>+>>>>>>>",
+		"S=HHHP^PHHHHHH",
+		"S=BBBP^PSSSSPP",
+		"S=FFFF^HHHHHPP",
+		">#>>>>+>>>>>CC",
+		"S=FFFF^FFFFFCC",
+		"S=TTTT^TTTTTTT",
+		">#>>>>+>>>>>>>",
+		"S=SSSS^SSSSSSS",
+	};
+
+	Image map_im;
+	Texture map_tex;
+	Sprite sp_map;
+
+	void create_map_sprite()
+	{
+		map_im.loadFromFile("D:\\Projects\\images\\map_new.png");
+		map_tex.loadFromImage(map_im);
+		sp_map.setTexture(map_tex);
+	}
+
+
+
+	void draw_map(RenderWindow &w)
+	{
+		for (int i = 0; i < H_MAP; i++)
 		{
-			switch (Map[i][j])
+			for (int j = 0; j < W_MAP; j++)
 			{
-			case 'M':
-				sp_map.setTextureRect(IntRect(0, 90, 90, 90));
-				break;
-			case 'T':
-				sp_map.setTextureRect(IntRect(0, 0, 90, 90));
-				break;
-			case 'S':
-				sp_map.setTextureRect(IntRect(90, 0, 90, 90));
-				break;
-			case 'P':
-				sp_map.setTextureRect(IntRect(90, 90, 90, 90));
-				break;
-			case 'R':
-				sp_map.setTextureRect(IntRect(180, 0, 90, 90));
-				break;
-			case 'C':
-				sp_map.setTextureRect(IntRect(180, 90, 90, 90));
-				break;
-			case 'B':
-				sp_map.setTextureRect(IntRect(360, 0, 90, 90));
-				break;
-			case 'F':
-				sp_map.setTextureRect(IntRect(360, 90, 90, 90));
-				break;
-			case 'H':
-				sp_map.setTextureRect(IntRect(270, 0, 90, 90));
-				break;
-			} 
-			sp_map.setPosition(j * 90, i * 90);
-			w.draw(sp_map);
+				switch (Map[i][j])
+				{
+				case '=':
+					sp_map.setTextureRect(IntRect(0, 150, 150, 150));
+					break;
+				case 'T':
+					sp_map.setTextureRect(IntRect(0, 0, 150, 150));
+					break;
+				case 'S':
+					sp_map.setTextureRect(IntRect(150, 0, 150, 150));
+					break;
+				case 'P':
+					sp_map.setTextureRect(IntRect(150, 150, 150, 150));
+					break;
+				case '>':
+					sp_map.setTextureRect(IntRect(300, 0, 150, 150));
+					break;
+				case 'C':
+					sp_map.setTextureRect(IntRect(300, 150, 150, 150));
+					break;
+				case 'B':
+					sp_map.setTextureRect(IntRect(600, 0, 150, 150));
+					break;
+				case 'F':
+					sp_map.setTextureRect(IntRect(600, 150, 150, 150));
+					break;
+				case 'H':
+					sp_map.setTextureRect(IntRect(450, 0, 150, 150));
+					break;
+				case '^':
+					sp_map.setTextureRect(IntRect(450, 150, 150, 150));
+					break;
+				case '+':
+					sp_map.setTextureRect(IntRect(150, 300, 150, 150));
+					break;
+				case '#':
+					sp_map.setTextureRect(IntRect(0, 300, 150, 150));
+					break;
+				}
+				sp_map.setPosition(j * 150, i * 150);
+				w.draw(sp_map);
+			}
 		}
 	}
 }
