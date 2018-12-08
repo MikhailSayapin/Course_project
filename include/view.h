@@ -19,14 +19,13 @@ void get_player_coordinate(float x, float y)
 {
 	float temp_x = x;
 	float temp_y = y;
-	if (x < 850)
-		temp_x = 850;
-	if (y < 700)
-		temp_y = 700;
-	if (x > 1250)
-		temp_x = 1250;
-	if (y > 1120)
-		temp_y = 1120;
+	if (x < 835)
+		temp_x = 835;
+	if (y < 520)
+		temp_y = 520;
+	if (x > 1270)
+		temp_x = 1270;
+	if (y > 1202)
+		temp_y = 1202;
 	view.setCenter(temp_x, temp_y);
 }
-
