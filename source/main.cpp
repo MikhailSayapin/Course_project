@@ -2,7 +2,7 @@
 #include "window.h"
 #include <SFML/Graphics.hpp>
 
-using namespace sf; //sdcds
+using namespace sf; 
 
 int main()
 {
