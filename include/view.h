@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML\Graphics.hpp>
 
 using namespace sf;
@@ -29,3 +31,4 @@ void get_player_coordinate(float x, float y)
 		temp_y = 1202;
 	view.setCenter(temp_x, temp_y);
 }
+

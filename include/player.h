@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
 #include "view.h"
 
@@ -65,32 +67,32 @@ void our_car_move(Player &p, float &time)
 	if (Keyboard::isKeyPressed(Keyboard::Left))
 	{
 		p.set_dir(1);
-		p.set_speed(0.2);
-		p.get_sprite().setTextureRect(IntRect(0, 60, 115, 47));
+		p.set_speed(0.07);
+		p.get_sprite().setTextureRect(IntRect(0, 30, 69, 28));
 		get_player_coordinate(p.get_our_car_coor_x(), p.get_our_car_coor_y());
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
 		p.set_dir(0);
-		p.set_speed(0.2);
-		p.get_sprite().setTextureRect(IntRect(0, 0, 115, 47));
+		p.set_speed(0.07);
+		p.get_sprite().setTextureRect(IntRect(0, 0, 70, 28));
 		get_player_coordinate(p.get_our_car_coor_x(), p.get_our_car_coor_y());
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
 		p.set_dir(3);
-		p.set_speed(0.2);
-		p.get_sprite().setTextureRect(IntRect(130, 0, 47, 115));
+		p.set_speed(0.07);
+		p.get_sprite().setTextureRect(IntRect(80, 0, 28, 70));
 		get_player_coordinate(p.get_our_car_coor_x(), p.get_our_car_coor_y());
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Down))
 	{
 		p.set_dir(2);
-		p.set_speed(0.2);
-		p.get_sprite().setTextureRect(IntRect(200, 0, 47, 115));
+		p.set_speed(0.07);
+		p.get_sprite().setTextureRect(IntRect(110, 0, 28, 70));
 		get_player_coordinate(p.get_our_car_coor_x(), p.get_our_car_coor_y());
 	}
 

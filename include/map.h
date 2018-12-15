@@ -1,5 +1,6 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
-#include <string>
 
 using namespace sf;
 
@@ -9,17 +10,20 @@ namespace Map
 	const int W_MAP = 14;
 
 	/*
-	* T - Ð´ÐµÑ€ÐµÐ²ÑŒÑ Ð¾Ð±Ñ‹Ñ‡Ð½Ñ‹Ðµ
-	* Ð’ - ÐºÑƒÑÑ‚Ñ‹
-	* Ð - Ð´Ð¾Ð¼Ð°
-	* F - Ð¼Ð½Ð¾Ð³Ð¾ÑÑ‚Ð°Ð¶ÐºÐ¸
-	* S - ÐµÐ»ÑŒ
-	* ^ - Ð¾Ð±Ñ‹Ñ‡Ð½Ñ‹Ðµ Ð´Ð¾Ñ€Ð¾Ð³Ð¸ Ð²Ð²ÐµÑ€Ñ…-Ð²Ð½Ð¸Ð·
-	* > - Ð¾Ð±Ñ‹Ñ‡Ð½Ñ‹Ðµ Ð´Ð¾Ñ€Ð¾Ð³Ð¸ Ð²Ð¿Ñ€Ð°Ð²Ð¾ - Ð²Ð»ÐµÐ²Ð¾
-	* C - Ñ‚Ð¾Ñ€Ð³Ð¾Ð²Ñ‹Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€
-	* Ð  - Ð¿Ð°Ñ€Ðº
-	* = - Ð¼Ð°Ð³Ð¸ÑÑ‚Ñ€Ð°Ð»ÑŒ
-	* + - Ð¿ÐµÑ€ÐµÐºÑ€Ñ‘ÑÑ‚Ð¾Ðº
+	* T - äåðåâüÿ îáû÷íûå
+	* Â - êóñòû
+	* Í - äîìà
+	* F - ìíîãîýòàæêè
+	* S - åëü
+	* ^ - îáû÷íûå äîðîãè ââåðõ-âíèç
+	* > - îáû÷íûå äîðîãè âïðàâî - âëåâî
+	* 1 - ïàðêîâêà
+	* 2 - ïàðêîâêà
+	* 3 - ïàðêîâêà
+	* 4 - ïàðêîâêà
+	* Ð - ïàðê
+	* = - ìàãèñòðàëü
+	* + - ïåðåêð¸ñòîê
 	*/
 
 	String Map[H_MAP] =
@@ -30,8 +34,8 @@ namespace Map
 		"S=HHHP^PHHHHHH",
 		"S=BBBP^PSSSSPP",
 		"S=FFFF^HHHHHPP",
-		">#>>>>+>>>>>CC",
-		"S=FFFF^FFFFFCC",
+		">#>>>>+>>>>>14",
+		"S=FFFF^FFFFF23",
 		"S=TTTT^TTTTTTT",
 		">#>>>>+>>>>>>>",
 		"S=SSSS^SSSSSSS",
@@ -73,7 +77,7 @@ namespace Map
 				case '>':
 					sp_map.setTextureRect(IntRect(300, 0, 150, 150));
 					break;
-				case 'C':
+				case '1':
 					sp_map.setTextureRect(IntRect(300, 150, 150, 150));
 					break;
 				case 'B':
@@ -93,6 +97,15 @@ namespace Map
 					break;
 				case '#':
 					sp_map.setTextureRect(IntRect(0, 300, 150, 150));
+					break;
+				case '2':
+					sp_map.setTextureRect(IntRect(300, 300, 150, 150));
+					break;
+				case '3':
+					sp_map.setTextureRect(IntRect(450, 300, 150, 150));
+					break;
+				case '4':
+					sp_map.setTextureRect(IntRect(600, 300, 150, 150));
 					break;
 				}
 				sp_map.setPosition(j * 150, i * 150);
