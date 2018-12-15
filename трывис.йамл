@@ -1,4 +1,0 @@
-language: C++
-rvm:
- - 2.2
- - jruby
