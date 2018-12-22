@@ -58,18 +58,25 @@ namespace Lights
 		}
 	};
 	
-	Clock cl_for_lights;
+	Clock cl_for_lights_highway;
+	Clock cl_for_lights_roads;
 	float time;
 	void change_section_for_highway(Traffic_Light &tl)
 	{
-		time = cl_for_lights.getElapsedTime().asSeconds();
+		time = cl_for_lights_highway.getElapsedTime().asSeconds();
 		if (time <= 4)
 		{
 			tl.set_section(0);
 			tl.change_image();
 		}
 
-		if (time > 4 && time <= 16)
+		if (time > 4 && time <= 6)
+		{
+			tl.set_section(1);
+			tl.change_image();
+		}
+
+		if (time > 6 && time <= 16)
 		{
 			tl.set_section(2);
 			tl.change_image();
@@ -84,7 +91,7 @@ namespace Lights
 		if (time > 18)
 		{
 			time = 0;
-			cl_for_lights.restart();
+			cl_for_lights_highway.restart();
 		}
 	}
 
@@ -96,7 +103,13 @@ namespace Lights
 			tl.change_image();
 		}
 
-		if (time > 4 && time <= 16)
+		if (time > 4 && time <= 6)
+		{
+			tl.set_section(1);
+			tl.change_image();
+		}
+
+		if (time > 6 && time <= 16)
 		{
 			tl.set_section(0);
 			tl.change_image();
@@ -111,61 +124,74 @@ namespace Lights
 		if (time > 18)
 		{
 			time = 0;
-			cl_for_lights.restart();
+			cl_for_lights_highway.restart();
 		}
 	}
 
 	void change_section_for_left_right(Traffic_Light &tl)
 	{
-		if (time <= 4)
+		time = cl_for_lights_roads.getElapsedTime().asSeconds();
+		if (time <= 6)
 		{
 			tl.set_section(2);
 			tl.change_image();
 		}
 
-		if (time > 4 && time <= 8)
-		{
-			tl.set_section(0);
-			tl.change_image();
-		}
-
-		if (time > 8 && time <= 9)
+		if (time > 6 && time <= 8)
 		{
 			tl.set_section(1);
 			tl.change_image();
 		}
 
-		if (time > 9)
+		if (time > 8 && time <= 12)
+		{
+			tl.set_section(0);
+			tl.change_image();
+		}
+
+		if (time > 12 && time <= 14)
+		{
+			tl.set_section(1);
+			tl.change_image();
+		}
+
+		if (time > 14)
 		{
 			time = 0;
-			cl_for_lights.restart();
+			cl_for_lights_roads.restart();
 		}
 	}
 
 	void change_section_for_up_down(Traffic_Light &tl)
 	{
-		if (time <= 4)
+		if (time <= 6)
 		{
 			tl.set_section(0);
 			tl.change_image();
 		}
 
-		if (time > 4 && time <= 8)
-		{
-			tl.set_section(2);
-			tl.change_image();
-		}
-
-		if (time > 8 && time <= 9)
+		if (time > 6 && time <= 8)
 		{
 			tl.set_section(1);
 			tl.change_image();
 		}
 
-		if (time > 9)
+		if (time > 8 && time <= 12)
+		{
+			tl.set_section(2);
+			tl.change_image();
+		}
+
+		if (time > 12 && time <= 14)
+		{
+			tl.set_section(1);
+			tl.change_image();
+		}
+
+		if (time > 14)
 		{
 			time = 0;
-			cl_for_lights.restart();
+			cl_for_lights_roads.restart();
 		}
 	}
 
